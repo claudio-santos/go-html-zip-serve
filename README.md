@@ -1,57 +1,57 @@
 # go-html-zip-serve
 
-Servidor HTTP em Go que serve conteúdo HTML a partir de arquivos ZIP.
+Go HTTP server that serves HTML content from ZIP files.
 
-## Funcionalidades
+## Features
 
-- Serve documentação HTML diretamente de arquivos ZIP
-- Página inicial com lista de zips disponíveis
-- Auto-detecção de index.html ao acessar diretórios
-- Interface com PicoCSS (tema claro/escuro automático)
-- Leitura direta do ZIP sem extração
-- Proteção contra path traversal
+- Serve HTML documentation directly from ZIP archives
+- Home page with list of available ZIPs
+- Auto-detection of index.html when accessing directories
+- PicoCSS interface (automatic light/dark theme)
+- Direct ZIP reading without extraction
+- Path traversal protection
 
-## Instalação
+## Installation
 
 ```bash
 go build -o go-html-zip-serve.exe
 ```
 
-## Uso
+## Usage
 
-1. **Executar o servidor:**
+1. **Start the server:**
    ```bash
    ./go-html-zip-serve
    ```
 
-2. **Colocar arquivos ZIP na pasta `http/`:**
+2. **Place ZIP files in the `http/` folder:**
    ```
    http/
-   └── exemplo.zip    → acessível em http://localhost:4000/exemplo/
+   └── example.zip    → accessible at http://localhost:4000/example/
    ```
 
-3. **Acessar no browser:**
-   - `http://localhost:4000/` → Lista todos os zips
-   - `http://localhost:4000/exemplo/` → Serve index.html do zip
-   - `http://localhost:4000/exemplo/path/arquivo.html` → Arquivo específico
+3. **Access in browser:**
+   - `http://localhost:4000/` → Lists all ZIPs
+   - `http://localhost:4000/example/` → Serves index.html from ZIP
+   - `http://localhost:4000/example/path/file.html` → Specific file
 
-## Estrutura de Arquivos
+## File Structure
 
 ```
 go-html-zip-serve/
-├── config.json          # Configuração (porta, pasta)
-├── http/                # Colocar arquivos .zip aqui
-│   ├── exemplo.zip
-│   └── projeto.zip
-├── static/              # Arquivos estáticos (CSS)
+├── config.json          # Configuration (port, directory)
+├── http/                # Place .zip files here
+│   ├── example.zip
+│   └── project.zip
+├── static/              # Static files (CSS)
 │   └── pico.min.css
 ├── main.go
 └── go-html-zip-serve.exe
 ```
 
-## Configuração
+## Configuration
 
-Editar `config.json`:
+Edit `config.json`:
 
 ```json
 {
@@ -60,25 +60,25 @@ Editar `config.json`:
 }
 ```
 
-| Opção     | Descrição              | Default |
+| Option    | Description            | Default |
 |-----------|------------------------|---------|
-| `port`    | Porta do servidor HTTP | `:4000` |
-| `httpDir` | Pasta com os ZIPs      | `http`  |
+| `port`    | HTTP server port       | `:4000` |
+| `httpDir` | Directory with ZIPs    | `http`  |
 
-**Exemplos de `httpDir`:**
-- `"http"` → pasta local (default)
-- `"documentos"` → outra pasta local
-- `"C:/zips"` → caminho absoluto
-- `"../shared/zips"` → pasta externa
+**Examples of `httpDir`:**
+- `"http"` → local folder (default)
+- `"documents"` → another local folder
+- `"C:/zips"` → absolute path
+- `"../shared/zips"` → external folder
 
-## MIME Types Suportados
+## Supported MIME Types
 
 - HTML, CSS, JavaScript
 - JSON, XML
 - PNG, JPG, GIF, SVG, ICO
-- Fontes (WOFF, WOFF2, TTF)
+- Fonts (WOFF, WOFF2, TTF)
 
-## Desenvolvimento
+## Development
 
 ```bash
 # Build
@@ -87,6 +87,6 @@ go build -o go-html-zip-serve.exe
 # Run
 ./go-html-zip-serve.exe
 
-# Testar
+# Test
 curl http://localhost:4000/
 ```
